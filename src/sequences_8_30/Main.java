@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package sequences_8_30;
+
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -10,8 +10,8 @@ package sequences_8_30;
  */
 public class Main {
 
-    final static int MAX = 50;
-    final static int MAX_IN_LINE = 24;
+    final static int MAX = 200;
+    final static int MAX_IN_LINE = 16;
     final static int MAX_LENGTH=getNumberOfDigits(MAX);
 
     private static int getNumberOfDigits(int n){
@@ -26,21 +26,33 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        
+        FileWriter myWriter=null;
+        try {
+               myWriter = new FileWriter("output/integers.txt");  
+            //myWriter.write("Files in Java might be tricky, but it is fun enough!");
+            //myWriter.close();
+        } catch(IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+      
+        
         for (int i = 1; i < MAX; i++) {
-            System.out.print(i);
+            myWriter.write(Integer.toString(i));
             if (i < MAX - 1) {
-                System.out.print(", ");
+                myWriter.write(", ");
             }
             if (getNumberOfDigits(i)<MAX_LENGTH){
                 for (int j=0;j<MAX_LENGTH-getNumberOfDigits(i);j++){
-                    System.out.print(" ");
+                    myWriter.write(" ");
                 }
             }
             if (i % MAX_IN_LINE == 0) {
-                System.out.print("\n");
+                myWriter.write("\n");
             }
         }
-        System.out.print("\n");
+        myWriter.write("\n");
+        myWriter.close();
     }
 }
