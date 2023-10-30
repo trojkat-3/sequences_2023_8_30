@@ -10,10 +10,18 @@ import java.util.Collections;
  * @author xenon
  */
 public class IntegersPrinter {
-    final static int MAX_IN_LINE = 16;
-    final static boolean WRITE_TO_FILE = true;
+    private final static int MAX_IN_LINE = 16;
+    private String filename;
     
-    private static int getNumberOfDigits(int n) {
+    public IntegersPrinter(){
+        this.filename=null;
+    }
+    public IntegersPrinter(String filename){
+        this.filename=filename;
+    }
+    
+    
+    private int getNumberOfDigits(int n) {
         int nd = 0;
         while (n > 0) {
             nd++;
@@ -22,7 +30,7 @@ public class IntegersPrinter {
         return nd;
     }
     
-    public static void printIntegers(ArrayList<Integer> listToOutput){
+    public void print(ArrayList<Integer> listToOutput){
         String output = "";
         for (int i = 0; i < listToOutput.size() ; i++) {
             int n=listToOutput.get(i);
@@ -40,8 +48,8 @@ public class IntegersPrinter {
             }
         }
         output += "\n";
-        if (WRITE_TO_FILE) {
-            try (FileWriter myWriter = new FileWriter("output/integers.txt");) {
+        if (filename!=null) {
+            try (FileWriter myWriter = new FileWriter("output/"+filename);) {
                 myWriter.write(output);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
