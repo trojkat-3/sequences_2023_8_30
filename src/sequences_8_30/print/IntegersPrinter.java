@@ -10,7 +10,7 @@ import java.util.Collections;
  * @author xenon
  */
 public class IntegersPrinter {
-    private final static int MAX_IN_LINE = 16;
+    private final static int MAX_IN_LINE = 10;
     private String filename;
     
     public IntegersPrinter(){
