@@ -28,11 +28,12 @@ public class Main {
             return Fibonacci(n - 2, list) + Fibonacci(n - 1, list);
         }
     }
-
+    
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) {    
         IntegersPrinter printerStdOut = new IntegersPrinter();
         IntegersPrinter printerFile = new IntegersPrinter("integers.txt");
 
@@ -41,13 +42,13 @@ public class Main {
         for (int i = 1; i <= MAX; i++) {
             list.add(i);
         }
-        printerStdOut.print(list);
+        printerStdOut.print(list, "Integers");
         //squares
         list.clear();
         for (int i = 1; i * i <= MAX; i++) {
             list.add(i * i);
         }
-        printerFile.print(list);
+        printerFile.print(list, "Squares");
         //primes
         list.clear();
         for (int i = 1; i <= MAX; i++) {
@@ -55,7 +56,7 @@ public class Main {
                 list.add(i);
             }
         }
-        printerFile.print(list);
+        printerFile.print(list, "Primes");
         //Fibonacci
         list.clear();
         int i=0;
@@ -64,6 +65,7 @@ public class Main {
             list.add(fib);
             i++;
         }
-        printerFile.print(list);
+        printerStdOut.print(list,"Fibonacci numbers");
+        printerFile.print(list,"Fibonacci numbers");
     }
 }
