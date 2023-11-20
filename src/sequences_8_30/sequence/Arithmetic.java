@@ -10,6 +10,11 @@ public class Arithmetic extends Sequence{
         this.diff=diff;
         initialize();
     }
+    
+    @Override
+    public int getSum(int n) {
+        return (2*a1+(n-1)*diff)*n/2;
+    }
 
     @Override
     void initialize() {

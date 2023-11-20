@@ -18,13 +18,17 @@ public class Main {
         printerStdOut.print(sq);
         printerFile.print(sq);
         
-        sq=new Arithmetic(-3,5);
+        sq=new Arithmetic(3,5);
         printerStdOut.print(sq);
         printerFile.print(sq);
         
-        sq=new Fibonacci(-3,5);
+        System.out.println(sq.getSum(10));
+        
+        sq=new Fibonacci(3,5);
         printerStdOut.print(sq);
         printerFile.print(sq);
+        
+          System.out.println(sq.getSum(30));
    
         sq=new Squares();
         printerStdOut.print(sq);
