@@ -10,6 +10,12 @@ abstract public class Sequence {
     public Sequence(String name){
         this.name=name;
     }
+    
+    public void setMax(int max){
+        this.max=max;
+        sequence.clear();
+        initialize();
+    }
 
     public String getName() {
         return name;

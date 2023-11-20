@@ -16,12 +16,17 @@ public class Main {
         Sequence sq=new Integers();
         printerStdOut.print(sq);
         printerFile.print(sq);
+        
+        sq=new Fibonacci(-3,5);
+        printerStdOut.print(sq);
+        printerFile.print(sq);
    
         sq=new Squares();
         printerStdOut.print(sq);
         printerFile.print(sq);
    
         sq=new Primes();
+        sq.setMax(10000);
         printerStdOut.print(sq);
         printerFile.print(sq);
    
