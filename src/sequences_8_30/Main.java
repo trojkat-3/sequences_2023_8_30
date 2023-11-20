@@ -14,13 +14,20 @@ public class Main {
         IntegersPrinter printerFile = new IntegersPrinter("integers.txt");
         
         Sequence sq=new Integers();
-        //printerStdOut.print(listToOutput, sq.getName());
-        //print
+        printerStdOut.print(sq);
+        printerFile.print(sq);
+   
         sq=new Squares();
-        //print
+        printerStdOut.print(sq);
+        printerFile.print(sq);
+   
         sq=new Primes();
-        //print
+        printerStdOut.print(sq);
+        printerFile.print(sq);
+   
         sq=new Fibonacci();
-        //print
+        printerStdOut.print(sq);
+        printerFile.print(sq);
+        
     }
 }

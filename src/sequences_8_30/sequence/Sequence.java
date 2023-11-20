@@ -14,6 +14,10 @@ abstract public class Sequence {
     public String getName() {
         return name;
     }
+    
+    public ArrayList<Integer> getSequence(){
+        return sequence;
+    }
 
     @Override
     public String toString() {

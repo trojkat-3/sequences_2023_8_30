@@ -1,0 +1,12 @@
+-----------
+Integers:
+
+-----------
+Squares:
+
+-----------
+Primes:
+
+-----------
+Fibonacci numbers:
+

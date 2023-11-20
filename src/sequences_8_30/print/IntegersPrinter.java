@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import sequences_8_30.sequence.Sequence;
 
 /**
  *
@@ -40,7 +41,9 @@ public class IntegersPrinter {
         return nd;
     }
 
-    public void print(ArrayList<Integer> listToOutput, String name) {
+    public void print(Sequence sq) {
+        ArrayList<Integer> listToOutput=sq.getSequence();
+        String name=sq.getName();
         String output = "-----------\n"+name+":\n";
         for (int i = 0; i < listToOutput.size(); i++) {
             int n = listToOutput.get(i);
