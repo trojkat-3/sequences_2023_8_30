@@ -4,6 +4,7 @@ public class Integers extends Sequence {
     
     public Integers(){
         super("Integers");
+        initialize();
     }
 
     @Override

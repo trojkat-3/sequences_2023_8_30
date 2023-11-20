@@ -6,15 +6,16 @@ public class Fibonacci extends Sequence{
     
     public Fibonacci(){
         super("Fibonacci numbers");
+        initialize();
     }
     
-     private int Fibonacci(int n, ArrayList<Integer> list) {
+     private int fibonacci(int n, ArrayList<Integer> list) {
         if (n <= 1) {
             return n;
         } else if (n < list.size()) {
             return list.get(n);
         } else {
-            return Fibonacci(n - 2, list) + Fibonacci(n - 1, list);
+            return fibonacci(n - 2, list) + fibonacci(n - 1, list);
         }
     }
 
@@ -22,7 +23,7 @@ public class Fibonacci extends Sequence{
     void initialize() {
         int i=0;
         int fib;
-        while ( (fib=Fibonacci(i, sequence))<=max ){
+        while ( (fib=fibonacci(i, sequence))<=max ){
             sequence.add(fib);
             i++;
         }

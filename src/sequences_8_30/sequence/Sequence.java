@@ -3,7 +3,7 @@ package sequences_8_30.sequence;
 import java.util.ArrayList;
 
 abstract public class Sequence {
-    protected int max = 10000;
+    protected int max = 1000;
     protected ArrayList<Integer> sequence=new ArrayList<>();
     private String name;
     

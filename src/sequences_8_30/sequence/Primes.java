@@ -4,6 +4,7 @@ public class Primes extends Sequence {
 
     public Primes() {
         super("Primes");
+        initialize();
     }
 
     private boolean isPrime(int n) {
