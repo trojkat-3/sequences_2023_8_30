@@ -27,9 +27,30 @@ abstract public class Sequence {
 
     @Override
     public String toString() {
-        return "Sequence: "+name + " ["+max+"]";
+        return "Sequence: "+name + " [max: "+max+"]";
     }
     
     abstract void initialize();
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

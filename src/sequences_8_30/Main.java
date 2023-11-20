@@ -1,6 +1,7 @@
 package sequences_8_30;
 
 import sequences_8_30.print.IntegersPrinter;
+import sequences_8_30.sequence.Arithmetic;
 import sequences_8_30.sequence.Fibonacci;
 import sequences_8_30.sequence.Integers;
 import sequences_8_30.sequence.Primes;
@@ -14,6 +15,10 @@ public class Main {
         IntegersPrinter printerFile = new IntegersPrinter("integers.txt");
         
         Sequence sq=new Integers();
+        printerStdOut.print(sq);
+        printerFile.print(sq);
+        
+        sq=new Arithmetic(-3,5);
         printerStdOut.print(sq);
         printerFile.print(sq);
         

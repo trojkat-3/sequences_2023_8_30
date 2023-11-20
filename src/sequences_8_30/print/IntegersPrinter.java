@@ -43,8 +43,7 @@ public class IntegersPrinter {
 
     public void print(Sequence sq) {
         ArrayList<Integer> listToOutput=sq.getSequence();
-        String name=sq.getName();
-        String output = "-----------\n"+name+":\n";
+        String output = "-----------\n"+sq+":\n";
         for (int i = 0; i < listToOutput.size(); i++) {
             int n = listToOutput.get(i);
             output += Integer.toString(n);
