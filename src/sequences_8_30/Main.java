@@ -1,5 +1,6 @@
 package sequences_8_30;
 
+import sequences_8_30.exceptions.OutOfBoundsException;
 import sequences_8_30.print.IntegersPrinter;
 import sequences_8_30.sequence.Arithmetic;
 import sequences_8_30.sequence.Fibonacci;
@@ -22,13 +23,20 @@ public class Main {
         printerStdOut.print(sq);
         printerFile.print(sq);
         
-        System.out.println(sq.getSum(10));
+        try{
+            System.out.println(sq.getSum(10));
+        } catch (OutOfBoundsException ex){
+            System.out.println(ex.getMessage());
+        }
         
         sq=new Fibonacci(3,5);
         printerStdOut.print(sq);
         printerFile.print(sq);
-        
+        try {
           System.out.println(sq.getSum(30));
+        } catch (OutOfBoundsException ex){
+            System.out.println(ex.getMessage());
+        }
    
         sq=new Squares();
         printerStdOut.print(sq);

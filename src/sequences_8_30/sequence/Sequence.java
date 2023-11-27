@@ -1,6 +1,7 @@
 package sequences_8_30.sequence;
 
 import java.util.ArrayList;
+import sequences_8_30.exceptions.OutOfBoundsException;
 
 abstract public class Sequence {
 
@@ -23,11 +24,12 @@ abstract public class Sequence {
      *
      * @param n
      * @return sum of n initial elements
+     * @throws OutOfBoundsException
      */
-    public int getSum(int n) throws Exception {
+    public int getSum(int n) throws OutOfBoundsException {
         if (n>sequence.size()){
-            throw new Exception("In the sum function "+n
-                    +" is to large, max: "+sequence.size());
+            throw new OutOfBoundsException("In the sum function for "+name+
+                    " seqence max="+sequence.size(),n);
         }
         int sum = 0;
         for (int i = 0; i < n; i++) {
