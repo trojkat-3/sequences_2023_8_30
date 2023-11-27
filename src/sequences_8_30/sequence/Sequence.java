@@ -1,6 +1,8 @@
 package sequences_8_30.sequence;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import sequences_8_30.exceptions.CantDecomposeException;
 import sequences_8_30.exceptions.OutOfBoundsException;
 
 abstract public class Sequence {
@@ -36,6 +38,27 @@ abstract public class Sequence {
             sum += sequence.get(i);
         }
         return sum;
+    }
+    
+    public ArrayList<Integer> getDecomposition(int n) 
+            throws CantDecomposeException{
+        int nBackup=n;
+        ArrayList<Integer> lst=new ArrayList<>(sequence); //shallow copy
+        Collections.sort(lst,Collections.reverseOrder());
+        ArrayList<Integer> ret=new ArrayList<>(); //output
+        int i=0;
+        while(n>0 && i<lst.size()){
+            if (lst.get(i)<=n){
+                ret.add(lst.get(i));
+                n-=lst.get(i);
+            } else {
+                i++;
+            }
+        }
+        if (n!=0){
+            throw new CantDecomposeException(name, nBackup);
+        }
+        return ret;
     }
 
     public String getName() {
