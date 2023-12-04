@@ -2,7 +2,9 @@ package sequences_8_30;
 
 import sequences_8_30.exceptions.CantDecomposeException;
 import sequences_8_30.exceptions.OutOfBoundsException;
-import sequences_8_30.print.IntegersPrinter;
+import sequences_8_30.print.Printer;
+import sequences_8_30.print.PrinterFile;
+import sequences_8_30.print.PrinterStdOut;
 import sequences_8_30.sequence.Arithmetic;
 import sequences_8_30.sequence.Fibonacci;
 import sequences_8_30.sequence.Integers;
@@ -13,8 +15,8 @@ import sequences_8_30.sequence.Squares;
 public class Main {
 
     public static void main(String[] args) {
-        IntegersPrinter printerStdOut = new IntegersPrinter();
-        IntegersPrinter printerFile = new IntegersPrinter("integers.txt");
+        Printer printerStdOut = new PrinterStdOut();
+        Printer printerFile = new PrinterFile("integers.txt");
 
         Sequence sq = new Integers();
         printerStdOut.print(sq);
