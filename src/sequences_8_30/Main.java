@@ -2,6 +2,7 @@ package sequences_8_30;
 
 import sequences_8_30.exceptions.CantDecomposeException;
 import sequences_8_30.exceptions.OutOfBoundsException;
+import sequences_8_30.gui.MainFrame;
 import sequences_8_30.print.Printer;
 import sequences_8_30.print.PrinterFile;
 import sequences_8_30.print.PrinterStdOut;
@@ -15,6 +16,15 @@ import sequences_8_30.sequence.Squares;
 public class Main {
 
     public static void main(String[] args) {
+        
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainFrame().setVisible(true);
+            }
+        });
+        
+        
         Printer printerStdOut = new PrinterStdOut();
         Printer printerFile = new PrinterFile("integers.txt");
 
