@@ -31,7 +31,7 @@ abstract public class Sequence {
     public int getSum(int n) throws OutOfBoundsException {
         if (n>sequence.size()){
             throw new OutOfBoundsException("In the sum function for "+name+
-                    " seqence max="+sequence.size(),n);
+                    " sequence max="+sequence.size(),n);
         }
         int sum = 0;
         for (int i = 0; i < n; i++) {
