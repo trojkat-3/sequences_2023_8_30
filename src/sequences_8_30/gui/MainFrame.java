@@ -4,19 +4,66 @@
  */
 package sequences_8_30.gui;
 
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import sequences_8_30.sequence.Fibonacci;
+import sequences_8_30.sequence.Integers;
+import sequences_8_30.sequence.Primes;
+import sequences_8_30.sequence.Sequence;
+import sequences_8_30.sequence.Squares;
 
 /**
  *
  * @author xenon
  */
 public class MainFrame extends javax.swing.JFrame {
+    
+    Sequence currentSq=null;
+    
+    class ComboItem{
+        private Sequence sq;
+        
+        public ComboItem(Sequence sq){
+            this.sq = sq;
+        }
+        
+        public String toString(){
+            return sq.getName();
+        }
+        
+        public Sequence getSequence(){
+            return sq;
+        }
+    }
+    
+    private void lockSequenceChoice(boolean lock){
+        jComboBox1.setEnabled(!lock);
+        jButtonSelect.setEnabled(!lock);
+        jButtonShow.setEnabled(lock);
+        jButtonSave.setEnabled(lock);
+        jButtonDecompose.setEnabled(lock);
+        jButtonSum.setEnabled(lock);
+        jTextFieldDecompose.setEnabled(lock);
+        jTextFieldSum.setEnabled(lock);
+        jTextFieldLimit.setEnabled(lock);
+        jButtonChangeLimit.setEnabled(lock);
+        jLabelLimit.setEnabled(lock);
+    }
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+        ArrayList<ComboItem> sqList=new ArrayList<>();
+        sqList.add(new ComboItem(new Integers()));
+        sqList.add(new ComboItem(new Squares()));
+        sqList.add(new ComboItem(new Primes()));
+        sqList.add(new ComboItem(new Fibonacci()));
+        DefaultComboBoxModel comboModel=new DefaultComboBoxModel(sqList.toArray());
+        jComboBox1.setModel(comboModel);
+        lockSequenceChoice(false);
     }
 
     /**
@@ -32,13 +79,19 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jButtonSelect = new javax.swing.JButton();
+        jLabelLimit = new javax.swing.JLabel();
+        jTextFieldLimit = new javax.swing.JTextField();
+        jButtonChangeLimit = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jButtonShow = new javax.swing.JButton();
+        jButtonSave = new javax.swing.JButton();
+        jTextFieldDecompose = new javax.swing.JTextField();
+        jTextFieldSum = new javax.swing.JTextField();
+        jButtonDecompose = new javax.swing.JButton();
+        jButtonSum = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButtonQuit = new javax.swing.JButton();
         jButtonReset = new javax.swing.JButton();
@@ -52,18 +105,18 @@ public class MainFrame extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("Select");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSelect.setText("Select");
+        jButtonSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonSelectActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Change upper limit:");
+        jLabelLimit.setText("Change upper limit:");
 
-        jTextField1.setText("jTextField1");
+        jTextFieldLimit.setText("jTextField1");
 
-        jButton2.setText("Change");
+        jButtonChangeLimit.setText("Change");
 
         jLabel3.setText("Upper limit:");
 
@@ -81,13 +134,13 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
+                        .addComponent(jButtonSelect))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(jLabelLimit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(jButtonChangeLimit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -101,26 +154,67 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonSelect))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
+                    .addComponent(jLabelLimit)
+                    .addComponent(jTextFieldLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonChangeLimit)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
+        jButtonShow.setText("Show elements");
+
+        jButtonSave.setText("Save to file");
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
+
+        jTextFieldDecompose.setText("jTextField2");
+
+        jTextFieldSum.setText("jTextField3");
+
+        jButtonDecompose.setText("Decompose");
+
+        jButtonSum.setText("Sum");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTextFieldSum)
+                    .addComponent(jTextFieldDecompose)
+                    .addComponent(jButtonShow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonSum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonDecompose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonShow)
+                    .addComponent(jButtonSave))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDecompose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonDecompose))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldSum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSum))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         jButtonQuit.setText("Quit");
@@ -131,6 +225,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jButtonReset.setText("Reset");
+        jButtonReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonResetActionPerformed(evt);
+            }
+        });
 
         jButtonCredits.setText("Credits");
         jButtonCredits.addActionListener(new java.awt.event.ActionListener() {
@@ -207,27 +306,42 @@ public class MainFrame extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonCreditsActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectActionPerformed
+        currentSq=((ComboItem) jComboBox1.getSelectedItem()).getSequence();
+        lockSequenceChoice(true);
+    }//GEN-LAST:event_jButtonSelectActionPerformed
+
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonSaveActionPerformed
+
+    private void jButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetActionPerformed
+        lockSequenceChoice(false);
+    }//GEN-LAST:event_jButtonResetActionPerformed
 
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonChangeLimit;
     private javax.swing.JButton jButtonCredits;
+    private javax.swing.JButton jButtonDecompose;
     private javax.swing.JButton jButtonQuit;
     private javax.swing.JButton jButtonReset;
+    private javax.swing.JButton jButtonSave;
+    private javax.swing.JButton jButtonSelect;
+    private javax.swing.JButton jButtonShow;
+    private javax.swing.JButton jButtonSum;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelLimit;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldDecompose;
+    private javax.swing.JTextField jTextFieldLimit;
+    private javax.swing.JTextField jTextFieldSum;
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 }
