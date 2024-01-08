@@ -20,6 +20,10 @@ abstract public class Sequence {
         sequence.clear();
         initialize();
     }
+    
+    public int getMax(){
+        return max;
+    }
 
     /**
      * Computes the sum of n initial elements of the sequence

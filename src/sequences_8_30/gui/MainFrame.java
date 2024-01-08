@@ -7,6 +7,8 @@ package sequences_8_30.gui;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import sequences_8_30.print.Printer;
+import sequences_8_30.print.PrinterDummy;
 import sequences_8_30.sequence.Fibonacci;
 import sequences_8_30.sequence.Integers;
 import sequences_8_30.sequence.Primes;
@@ -20,6 +22,7 @@ import sequences_8_30.sequence.Squares;
 public class MainFrame extends javax.swing.JFrame {
     
     Sequence currentSq=null;
+    Printer printer=new PrinterDummy();
     
     class ComboItem{
         private Sequence sq;
@@ -84,7 +87,7 @@ public class MainFrame extends javax.swing.JFrame {
         jTextFieldLimit = new javax.swing.JTextField();
         jButtonChangeLimit = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelMax = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonShow = new javax.swing.JButton();
         jButtonSave = new javax.swing.JButton();
@@ -117,10 +120,15 @@ public class MainFrame extends javax.swing.JFrame {
         jTextFieldLimit.setText("jTextField1");
 
         jButtonChangeLimit.setText("Change");
+        jButtonChangeLimit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChangeLimitActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Upper limit:");
 
-        jLabel4.setText("jLabel4");
+        jLabelMax.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -144,7 +152,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)))
+                        .addComponent(jLabelMax)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -161,11 +169,16 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jTextFieldLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonChangeLimit)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabelMax))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jButtonShow.setText("Show elements");
+        jButtonShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonShowActionPerformed(evt);
+            }
+        });
 
         jButtonSave.setText("Save to file");
         jButtonSave.addActionListener(new java.awt.event.ActionListener() {
@@ -309,6 +322,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButtonSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectActionPerformed
         currentSq=((ComboItem) jComboBox1.getSelectedItem()).getSequence();
         lockSequenceChoice(true);
+        setMaxLabels();
     }//GEN-LAST:event_jButtonSelectActionPerformed
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
@@ -319,6 +333,30 @@ public class MainFrame extends javax.swing.JFrame {
         lockSequenceChoice(false);
     }//GEN-LAST:event_jButtonResetActionPerformed
 
+    private void jButtonShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowActionPerformed
+        // Show elements
+        TextArea tArea=new TextArea(this, true);
+        tArea.setText(printer.print(currentSq));
+        tArea.setVisible(true);
+    }//GEN-LAST:event_jButtonShowActionPerformed
+
+    private void jButtonChangeLimitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeLimitActionPerformed
+        try{
+            int newMax=Integer.parseInt(jTextFieldLimit.getText());
+            currentSq.setMax(newMax);
+            setMaxLabels();
+        }
+        catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Wrong number", "Error", 
+                JOptionPane.ERROR_MESSAGE);
+                }
+    }//GEN-LAST:event_jButtonChangeLimitActionPerformed
+
+    private void setMaxLabels(){
+        String max = Integer.toString(currentSq.getMax());
+        jLabelMax.setText(max);
+        jTextFieldLimit.setText(max);
+    }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -334,8 +372,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelLimit;
+    private javax.swing.JLabel jLabelMax;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
