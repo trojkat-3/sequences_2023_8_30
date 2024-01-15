@@ -9,6 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import sequences_8_30.print.Printer;
 import sequences_8_30.print.PrinterDummy;
+import sequences_8_30.print.PrinterFile;
 import sequences_8_30.sequence.Fibonacci;
 import sequences_8_30.sequence.Integers;
 import sequences_8_30.sequence.Primes;
@@ -326,7 +327,10 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSelectActionPerformed
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
-        // TODO add your handling code here:
+        String filename=JOptionPane.showInputDialog(this, 
+                "Please input a filename","sequences.txt");
+        Printer printerFile=new PrinterFile(filename);
+        printerFile.print(currentSq);
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
     private void jButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetActionPerformed
